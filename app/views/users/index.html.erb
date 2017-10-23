@@ -1,3 +1,8 @@
 <h1>Darebnb</h1>
 <p>Dare to book with us?</p>
-<%= render 'form' %>
+
+<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :city, params[:city], placeholder: "Search Listings" %>
+<%= submit_tag "Search" %>
+<% end %>
+
