@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :users, except: [:index, :create]
+
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+
 end
