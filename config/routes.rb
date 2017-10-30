@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :listings
+  resources :tags
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
@@ -19,6 +20,6 @@ Rails.application.routes.draw do
   resources :users, except: [:index, :create]
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
-
+  post "/tistings/:id/verify" => "listings#verify", as: "verify"
 
 end

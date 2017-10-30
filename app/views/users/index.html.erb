@@ -1,10 +1,10 @@
-<h1>Darebnb</h1>
+<h1>Airbnb</h1>
+
 <p>Dare to book with us?</p>
 
-<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :city, params[:city], placeholder: "Search Listings" %>
-<%= submit_tag "Search" %>
+<% if signed_in? -%>
+<%= link_to "My Profile", user_path(current_user) %><br>
 <% end %>
-
+<%= link_to "See listings", listings_path %><br>
 <%= link_to "Sign in with Facebook", "/auth/facebook" %>
 

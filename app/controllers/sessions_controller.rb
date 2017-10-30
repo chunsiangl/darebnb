@@ -1,4 +1,4 @@
-class SessionsColtroller < Clearance::SessionsController
+class SessionsController < Clearance::SessionsController
 
 	def create_from_omniauth
 		auth_hash = request.env["omniauth.auth"]
@@ -14,7 +14,7 @@ class SessionsColtroller < Clearance::SessionsController
 
 	# else: user logs in with OAuth for the first time
 	else
-		user = User.create_with_auth_and_hash(authentication. auth_hash)
+		user = User.create_with_auth_and_hash(authentication,auth_hash)
 	# you are expected to have a path that leads to a page for editing user details
 		@next = edit_user_path(user)
 		@notice = "User created. Please confirm or edit details"

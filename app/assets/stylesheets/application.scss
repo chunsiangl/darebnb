@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*.imagesize {
+    height: auto; 
+    width: auto; 
+    max-width: 100px; 
+    max-height: 100px;
+}
+*/
+
+  
+ .imagesize{
+    width: 100px;
+    height: 100px;
+    background: none;
+    position: relative;
+    animation: mymove 8s /*infinite;*/
+}
+
+@keyframes mymove {
+    from {left: 200px;}
+    to {left: 600px;}
+}
+
+head,body {
+	max-width: 1500px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+}

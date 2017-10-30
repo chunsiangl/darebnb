@@ -1,0 +1,27 @@
+<%= @message if @message %><br>
+
+First Name: <%= @user.first_name if @user.first_name %><br>
+Last Name : <%= @user.last_name  if @user.last_name%><br>
+Email : <%= @user.email if @user.email %><br>
+<%= @message if @message %><br>
+
+Your listings: <br>
+<% if @listings.present? %>
+  <%# render @listings %>
+	<% @listings.each do |listing| %>
+	<%= listing.title %><br>
+	<%= listing.description %><br>
+	<%= listing.price %><br>
+	<%= listing.address %><br>
+	<%= listing.city %><br>
+	<%= listing.country %><br>
+	<br>
+ 	<% end %>
+<% else %>
+	<p>You have no listings yet.</p>
+<% end %>
+
+<%= link_to "Edit Profile", edit_user_path %><br>
+<%= link_to "Back to main page", root_path %>
+
+	

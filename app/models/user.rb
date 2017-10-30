@@ -1,11 +1,15 @@
 class User < ApplicationRecord
   include Clearance::User
+  has_many :listings
   has_many :authentications, dependent: :destroy
-
+  enum role: [:customer, :moderator, :superadmin]
   def self.create_with_auth_and_hash(authentication, auth_hash)
+
   	user = self.create!(
-  		name: auth_hash["name"],
-  		email: auth_hash["extra"]["raw_info"]["email"]
+  		first_name: auth_hash["extra"]["raw_info"]["first_name"],
+      last_name: auth_hash["extra"]["raw_info"]["last_name"],
+  		email: auth_hash["extra"]["raw_info"]["email"],
+      password: SecureRandom.hex(3)
   		)
   	user.authentications << authentication
   	return user
