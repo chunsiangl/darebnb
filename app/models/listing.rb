@@ -2,7 +2,9 @@ class Listing < ApplicationRecord
 	include Filterable
 
 	belongs_to :user 
+	has_many :reservations
 	has_many :tags, through: :listing_tags
+	mount_uploaders :photos, PhotoUploader
   
 
   # scope :city, -> (city) { where city: city }

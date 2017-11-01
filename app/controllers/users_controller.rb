@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@listings = Listing.where(user_id: current_user.id)
-		
+		@reservation = current_user.reservations
+		#@reservations = Reservation.find_by(user_id: current_user.id)
 	end
 
 	def edit
@@ -20,6 +21,8 @@ class UsersController < ApplicationController
         else
         	@message = "Please login first."
    		end
+   	@listings = Listing.where(user_id: current_user.id)
+
    		render 'show'
    	end
 

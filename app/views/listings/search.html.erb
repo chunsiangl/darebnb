@@ -1,0 +1,25 @@
+
+<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+<%= submit_tag "Search" %>
+<% end %>
+<br>
+
+<% if params[:search] %>
+	<% if @listings.present? %>
+	  <%# render @listings %>
+	  <% @listings.each do |listing| %>
+	  	<%= render partial: 'listing', locals: { listing: listing } %>
+		  <form action="/action_page.php">
+		  <input type="date" name="bday">
+		  <input type="submit">
+		 </form>
+		 <%= link_to "Show full page", listing_path(listing) %>
+		 <br>
+	  <% end %>
+	<% else %>
+	  <p> There are no listings containing the term(s) <%= params[:search] %>.</p>
+	<% end %>
+<% end %>
+
+<%= link_to "Back to listings", listings_path %>

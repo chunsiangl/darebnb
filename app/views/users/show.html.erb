@@ -3,25 +3,64 @@
 First Name: <%= @user.first_name if @user.first_name %><br>
 Last Name : <%= @user.last_name  if @user.last_name%><br>
 Email : <%= @user.email if @user.email %><br>
-<%= @message if @message %><br>
+<%= link_to "Edit Profile", edit_user_path %><br>
+<%= link_to "Back to main page", root_path %><br>
+<%= @message if @message %><br> 
 
-Your listings: <br>
+<p> Your listings: </p>
 <% if @listings.present? %>
-  <%# render @listings %>
-	<% @listings.each do |listing| %>
-	<%= listing.title %><br>
-	<%= listing.description %><br>
-	<%= listing.price %><br>
-	<%= listing.address %><br>
-	<%= listing.city %><br>
-	<%= listing.country %><br>
-	<br>
- 	<% end %>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Price </th>
+			<th>Address</th>
+			<th>City </th>
+			<th>Country</th>
+		</tr>
+		
+		<% @listings.each do |listing| %>
+		<tr>
+		<td><%= listing.title %></td><br>
+		<td><%= listing.description %></td><br>
+		<td><%= listing.price %></td><br>
+		<td><%= listing.address %></td><br>
+		<td><%= listing.city %></td><br>
+		<td><%= listing.country %></td><br>
+		<td><%= link_to "Edit Listing", edit_listing_path(listing.id) %></td><br>
+		<td><%= link_to "Cancel Listing", listing_path, method: :delete , data: { confirm: 'Sure ah?' } %></td>
+		<% end %>
+			</tr>
+	</table>
 <% else %>
 	<p>You have no listings yet.</p>
+<% end%>
+
+
+<p>Your reservations:</p>
+<% if @reservation.present? %>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Number Of Guests</th>
+			<th>Check In</th>
+			<th>Check Out</th>
+			<th>Total Price</th>
+		</tr>
+
+	<% @reservation.each do |r| %>
+	<tr>
+	<td><%= link_to r.listing.title,listing_path(r.listing) %></td>
+	<td><%= r.no_guest %></td>
+	<td><%= r.start_date.strftime('%d %B %Y') %></td>
+	<td><%= r.end_date.strftime('%d %B %Y') %></td>
+	<td><%= "Rm" + r.total_price.to_s %></td>
+	<td><%= link_to "Cancel Reservation", listing_reservation_path(r.listing,r), method: :delete , data: { confirm: 'Sure ah?' }  %></td>
+	<% end %>
+	</tr>
+	</table>
+<% else %>
+	<p>You have no reservations yet. </p>
 <% end %>
 
-<%= link_to "Edit Profile", edit_user_path %><br>
-<%= link_to "Back to main page", root_path %>
 
-	

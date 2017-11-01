@@ -1,6 +1,7 @@
 <h2>Edit your profile</h2>
 
   <%= form_for @user do |form| %> 
+  <%# render partial: '/users/form', locals: { form: form } %>
   <%= render partial: '/users/form', object: form %>
   <%= form.submit %>
   <% end %>

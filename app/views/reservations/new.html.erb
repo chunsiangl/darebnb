@@ -1,0 +1,17 @@
+<%= form_for [@listings, @reservation] do |r| %>
+<% if @errors.present? %>
+<div>
+	<%= @errors %>
+</div>
+<% end %>
+<%= r.hidden_field :listing_id, value: @listings.id %>
+<%= r.label :number_of_guests %>
+<%= r.number_field :no_guest %><br>
+<%= r.label :start_date %>
+<%= r.date_field :start_date %><br>
+<%= r.label :end_date %>
+<%= r.date_field :end_date %><br>
+<%= r.submit "Submit Booking" %>
+<% end %>
+
+<%= link_to "Back", listing_path(@listings) %>
