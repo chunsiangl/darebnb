@@ -42,7 +42,7 @@ class ListingsController < ApplicationController
         if @listings.update(listing_params)
            @message = "Listing updated."
         end
-        @user = current_user
+      @user = current_user
       redirect_to @user
     end
 
@@ -54,16 +54,18 @@ class ListingsController < ApplicationController
   	end
 
     def destroy
-    @listings = Listing.find(params[:id])
-    @listings.destroy
-    redirect_to @listings.user
-  end
+      @listings = Listing.find(params[:id])
+      @listings.destroy
+      redirect_to @listings.user
+    end
 
 
     def verify
-      @listing = Listing.find(params[:id])
-      @listing.verify = true
-      @listing.save
+      if current_user.moderator?
+        @listing = Listing.find(params[:id])
+        @listing.verify = true
+        @listing.save
+      end
       #redirect_to @listing  #redirect to a objecct will go to the how path of that object  
     end
 

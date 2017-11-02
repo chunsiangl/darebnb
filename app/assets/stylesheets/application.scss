@@ -16,13 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*.imagesize {
-    height: auto; 
-    width: auto; 
-    max-width: 100px; 
-    max-height: 100px;
-}
-*/
 
   
  .imagesize{
@@ -30,7 +23,7 @@
     height: 100px;
     background: none;
     position: relative;
-    animation: mymove 8s /*infinite;*/
+    animation: mymove 8s infinite;
 }
 
 @keyframes mymove {

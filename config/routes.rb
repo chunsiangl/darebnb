@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   post "/listings/:id/verify" => "listings#verify", as: "verify"
 
   get '/search', to: "listings#search", as: "search"
+  get 'reservations/:id/payment' => "reservations#payment"
+  post 'reservations/:id/checkout' => "reservations#checkout", as: "reservations_checkout"
 
 end
