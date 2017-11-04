@@ -18,7 +18,7 @@
 
 
   
- .imagesize{
+.imagesize{
     width: 100px;
     height: 100px;
     background: none;
@@ -36,4 +36,17 @@ head,body {
     margin: auto;
     background: white;
     padding: 10px;
+}
+
+.carousel{
+    background: none;
+    margin-top: 20px;
+}
+.carousel .item{
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+    width: 100%;
+
 }

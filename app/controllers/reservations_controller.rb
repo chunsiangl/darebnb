@@ -41,7 +41,7 @@ class ReservationsController < ApplicationController
 		  nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
 		  @reservation = Reservation.find(params[:id])
 		  result = Braintree::Transaction.sale(
-		   :amount => @reservation.total_price, #this is currently hardcoded
+		   :amount => @reservation.total_price,
 		   :payment_method_nonce => nonce_from_the_client,
 		   :options => {
 		      :submit_for_settlement => true
@@ -49,6 +49,7 @@ class ReservationsController < ApplicationController
 		   )
 
 		  if result.success?
+			ReservationMailer.booking_email(current_user, @reservation.listing.user, @reservation.id).deliver_now
 		    redirect_to current_user , :flash => { :success => "Transaction successful!" }
 		  else
 		    redirect_to @listings, :flash => { :error => "Transaction failed. Please try again." }

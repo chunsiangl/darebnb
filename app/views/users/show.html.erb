@@ -21,14 +21,14 @@ Email : <%= @user.email if @user.email %><br>
 		
 		<% @listings.each do |listing| %>
 		<tr>
-		<td><%= listing.title %></td><br>
-		<td><%= listing.description %></td><br>
-		<td><%= listing.price %></td><br>
-		<td><%= listing.address %></td><br>
-		<td><%= listing.city %></td><br>
-		<td><%= listing.country %></td><br>
+		<td><%= listing.title %></td>
+		<td><%= listing.description %></td>
+		<td><%= listing.price %></td>
+		<td><%= listing.address %></td>
+		<td><%= listing.city %></td>
+		<td><%= listing.country %></td>
 		<td><%= link_to "Edit Listing", edit_listing_path(listing.id) %></td><br>
-		<td><%= link_to "Cancel Listing", listing_path, method: :delete , data: { confirm: 'Sure ah?' } %></td>
+		<td><%= link_to "Cancel Listing", listing_path(listing), method: :delete , data: { confirm: 'Sure ah?' } %></td>
 		<% end %>
 			</tr>
 	</table>
